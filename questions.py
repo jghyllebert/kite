@@ -35,9 +35,7 @@ def convert_to_roman_numeral(number):
     ]
 
     for index, (numeral, weight) in enumerate(numerals):
-        if weight > number:
-            continue
-        else:
+        if weight <= number:
             amount = math.floor(number / weight)
             if amount > 3 and index != 0:  # Allows more than one 'M'
                 previous_numeral, previous_weight = numerals[index-1]
@@ -47,6 +45,4 @@ def convert_to_roman_numeral(number):
             else:
                 result += str(numeral * int(amount))
                 number -= weight * amount
-        if number <= 0:
-            break
     return result
